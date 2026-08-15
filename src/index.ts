@@ -74,6 +74,6 @@ app.listen(config.port, () => {
   console.log(`   Webhook : POST http://localhost:${config.port}/webhook`)
   console.log(`   Health  : GET  http://localhost:${config.port}/health`)
   console.log('  ---------------------------------------------------------------')
-  console.log('   เปิดสู่อินเทอร์เน็ตด้วย: cloudflared tunnel --url http://localhost:' + config.port)
+  console.log(`   เปิดสู่อินเทอร์เน็ตด้วย: ngrok http ${config.port}`)
   console.log('')
 })
