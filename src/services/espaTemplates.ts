@@ -71,12 +71,18 @@ export interface EspaTemplateInfo {
   label: string
 }
 
+/** ไฟล์ .json ในโฟลเดอร์เดียวกันที่ไม่ใช่การ์ดของแผนก */
+const NON_TEMPLATE_FILES = new Set(['presets.json'])
+
 /** ลิสต์แผนกที่มีไฟล์ template จริงในโฟลเดอร์ (เรียงตามลำดับที่กำหนดไว้ก่อน แล้วตามด้วยที่เหลือ) */
 export function listEspaTemplates(): EspaTemplateInfo[] {
   const dir = espaTemplatesDir()
   let files: string[] = []
   try {
-    files = fs.readdirSync(dir).filter((f) => f.toLowerCase().endsWith('.json'))
+    files = fs
+      .readdirSync(dir)
+      .filter((f) => f.toLowerCase().endsWith('.json'))
+      .filter((f) => !NON_TEMPLATE_FILES.has(f.toLowerCase()))
   } catch {
     return []
   }
@@ -176,6 +182,40 @@ function pruneFlex(node: unknown): unknown {
     return obj
   }
   return node
+}
+
+/** งานที่ทำบ่อยของแต่ละแผนก ใช้เติมฟอร์มให้ ไม่ต้องพิมพ์ซ้ำ */
+export interface EspaPreset {
+  id: string
+  label: string
+  title: string
+  message: string
+  status: string
+  owner: string
+  note: string
+}
+
+/**
+ * อ่าน presets.json ในโฟลเดอร์เทมเพลต
+ *
+ * ตั้งใจไม่ throw ถ้าไฟล์หายหรือพัง เพราะ preset เป็นแค่ตัวช่วยกรอก
+ * ไม่ควรทำให้หน้าส่งข้อความทั้งหน้าเปิดไม่ได้ ถ้าไม่มีก็แค่ไม่มี dropdown ให้เลือก
+ */
+export function listEspaPresets(): Record<string, EspaPreset[]> {
+  const file = path.join(espaTemplatesDir(), 'presets.json')
+  try {
+    const raw = fs.readFileSync(file, 'utf8').replace(/^﻿/, '')
+    const parsed = JSON.parse(raw) as Record<string, EspaPreset[]>
+    if (!parsed || typeof parsed !== 'object') return {}
+    // กันไฟล์ที่แก้มือแล้วรูปแบบเพี้ยน ไม่ให้หลุดไปพังตอน render
+    return Object.fromEntries(
+      Object.entries(parsed)
+        .filter(([, list]) => Array.isArray(list))
+        .map(([dept, list]) => [dept, list.filter((p) => p && typeof p.id === 'string' && typeof p.label === 'string')])
+    )
+  } catch {
+    return {}
+  }
 }
 
 export interface EspaFilledMessage {

@@ -72,50 +72,62 @@
             หรือกำหนด <code class="bg-white px-1 rounded">ESPA_TEMPLATES_DIR</code> ใน .env
           </div>
         <% } else { %>
-        <div>
-          <label class="label">แผนก</label>
-          <select name="espaDept" class="input">
-            <% espaTemplates.forEach(function (t) { %>
-              <option value="<%= t.key %>" <%= form.espaDept === t.key ? 'selected' : '' %>><%= t.label %></option>
-            <% }) %>
-          </select>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="label">แผนก</label>
+            <select name="espaDept" id="espaDept" class="input">
+              <% espaTemplates.forEach(function (t) { %>
+                <option value="<%= t.key %>" <%= form.espaDept === t.key ? 'selected' : '' %>><%= t.label %></option>
+              <% }) %>
+            </select>
+          </div>
+          <div>
+            <label class="label">งานที่ทำบ่อย (เลือกแล้วเติมให้ แก้ต่อได้)</label>
+            <select id="espaPreset" class="input">
+              <option value="">— เลือกเพื่อเติมข้อความให้อัตโนมัติ —</option>
+            </select>
+          </div>
         </div>
         <div class="grid md:grid-cols-2 gap-3">
           <div>
             <label class="label">หัวข้อ (TITLE)</label>
-            <input name="espaTitle" value="<%= form.espaTitle || 'แจ้งผลอนุมัติการลา' %>" class="input">
+            <input name="espaTitle" id="espaTitle" value="<%= form.espaTitle || '' %>" class="input" placeholder="เช่น ผลทดลองฉีด T1 ผ่านเกณฑ์">
           </div>
           <div>
             <label class="label">altText (ข้อความสำรอง)</label>
-            <input name="espaAltText" value="<%= form.espaAltText || 'แจ้งเตือนเอกสารใหม่' %>" class="input">
+            <input name="espaAltText" id="espaAltText" value="<%= form.espaAltText || '' %>" class="input" placeholder="เว้นว่าง = ใช้หัวข้อเป็นข้อความสำรอง">
           </div>
         </div>
         <div>
           <label class="label">รายละเอียด (MESSAGE)</label>
-          <textarea name="espaMessage" rows="2" class="input"><%= form.espaMessage || 'คำขอลาของคุณได้รับการอนุมัติแล้ว โปรดตรวจสอบรายละเอียดในระบบ' %></textarea>
+          <textarea name="espaMessage" id="espaMessage" rows="2" class="input" placeholder="รายละเอียดที่ต้องการแจ้ง"><%= form.espaMessage || '' %></textarea>
         </div>
         <div class="grid md:grid-cols-3 gap-3">
           <div>
             <label class="label">เลขอ้างอิง</label>
-            <input name="espaRef" value="<%= form.espaRef || 'HR-2026-00125' %>" class="input">
+            <div class="flex gap-2">
+              <input name="espaRef" id="espaRef" value="<%= form.espaRef || '' %>" class="input flex-1" placeholder="เว้นว่าง = ออกเลขให้ตอนส่ง">
+              <button type="button" id="btnNextRef" class="shrink-0 px-3 rounded-lg border border-slate-300 text-sm text-slate-600 hover:bg-slate-50" title="ออกเลขเดี๋ยวนี้ (เลขจะถูกใช้ไปแม้ไม่ได้ส่ง)">ออกเลข</button>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-1" id="refHint"></p>
           </div>
           <div>
             <label class="label">สถานะ</label>
-            <input name="espaStatus" value="<%= form.espaStatus || 'อนุมัติแล้ว' %>" class="input">
+            <input name="espaStatus" id="espaStatus" value="<%= form.espaStatus || '' %>" class="input" placeholder="เช่น ผ่าน T1">
           </div>
           <div>
             <label class="label">วันที่/เวลา</label>
-            <input name="espaDatetime" value="<%= form.espaDatetime || '16 ส.ค. 2026 09:30' %>" class="input">
+            <input name="espaDatetime" id="espaDatetime" value="<%= form.espaDatetime || '' %>" class="input" placeholder="เว้นว่าง = ไม่แสดงแถวนี้">
           </div>
         </div>
         <div class="grid md:grid-cols-2 gap-3">
           <div>
             <label class="label">ผู้รับผิดชอบ</label>
-            <input name="espaOwner" value="<%= form.espaOwner || 'ฝ่ายทรัพยากรบุคคล' %>" class="input">
+            <input name="espaOwner" id="espaOwner" value="<%= form.espaOwner || '' %>" class="input" placeholder="เช่น หัวหน้ากะ B">
           </div>
           <div>
             <label class="label">หมายเหตุ (ไม่ใส่ก็ได้)</label>
-            <input name="espaNote" value="<%= form.espaNote || 'โปรดตรวจสอบรายละเอียดภายใน 3 วัน' %>" class="input">
+            <input name="espaNote" id="espaNote" value="<%= form.espaNote || '' %>" class="input" placeholder="เว้นว่าง = ไม่แสดงกล่องหมายเหตุ">
           </div>
         </div>
         <div>
@@ -242,6 +254,103 @@
     document.getElementById('blockTemplate').classList.toggle('hidden', mode !== 'template')
     document.getElementById('blockEspa').classList.toggle('hidden', mode !== 'espa')
   }
+  // -------------------------------------------------------------------------
+  // ESPA: งานที่ทำบ่อย + เลขที่เอกสารอัตโนมัติ
+  // -------------------------------------------------------------------------
+  var ESPA_PRESETS = <%- JSON.stringify(espaPresets || {}) %>;
+
+  var deptEl = document.getElementById('espaDept');
+  var presetEl = document.getElementById('espaPreset');
+
+  if (deptEl && presetEl) {
+    // เติมรายการงานของแผนกที่เลือกลงใน dropdown
+    function fillPresetOptions() {
+      var list = ESPA_PRESETS[deptEl.value] || [];
+      presetEl.innerHTML = '';
+      var first = document.createElement('option');
+      first.value = '';
+      first.textContent = list.length
+        ? '— เลือกเพื่อเติมข้อความให้อัตโนมัติ —'
+        : '— แผนกนี้ยังไม่มีงานสำเร็จรูป —';
+      presetEl.appendChild(first);
+      list.forEach(function (p) {
+        var o = document.createElement('option');
+        o.value = p.id;
+        o.textContent = p.label;
+        presetEl.appendChild(o);
+      });
+    }
+
+    function setVal(id, value) {
+      var el = document.getElementById(id);
+      if (el) el.value = value || '';
+    }
+
+    // เลือกงาน = เขียนทับ 5 ช่องนี้ทันที ไม่ถามก่อน
+    // ตั้งใจให้เขียนทับ เพราะจุดประสงค์ของ preset คือไม่ต้องพิมพ์เอง
+    // ถ้าพิมพ์ไปแล้วแล้วมาเลือก preset ทีหลัง ก็ยังแก้ต่อได้ตามปกติ
+    presetEl.addEventListener('change', function () {
+      var list = ESPA_PRESETS[deptEl.value] || [];
+      var p = list.filter(function (x) { return x.id === presetEl.value; })[0];
+      if (!p) return;
+      setVal('espaTitle', p.title);
+      setVal('espaAltText', p.title);
+      setVal('espaMessage', p.message);
+      setVal('espaStatus', p.status);
+      setVal('espaOwner', p.owner);
+      setVal('espaNote', p.note);
+      // เติมวันเวลาปัจจุบันให้ด้วย เพราะเกือบทุกใบต้องใส่และมักเป็นเวลาที่กดส่ง
+      setVal('espaDatetime', new Date().toLocaleString('th-TH', {
+        day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      }).replace(' น.', ''));
+    });
+
+    // เปลี่ยนแผนก = เปลี่ยนรายการงาน และบอกว่าเลขถัดไปของแผนกนี้จะเป็นอะไร
+    deptEl.addEventListener('change', function () {
+      fillPresetOptions();
+      refreshRefHint();
+    });
+    fillPresetOptions();
+
+    // --- เลขที่เอกสาร ---
+    var refHint = document.getElementById('refHint');
+
+    // ดูเฉย ๆ ไม่จองเลข จึงเรียกได้ทุกครั้งที่เปลี่ยนแผนกโดยไม่เปลืองเลข
+    function refreshRefHint() {
+      if (!refHint) return;
+      fetch('/api/espa/peek-ref?department=' + encodeURIComponent(deptEl.value))
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (d && d.referenceNo) refHint.textContent = 'เว้นว่างไว้ ระบบจะออกเลข ' + d.referenceNo + ' ให้ตอนกดส่ง';
+        })
+        .catch(function () { refHint.textContent = ''; });
+    }
+    refreshRefHint();
+
+    var btnRef = document.getElementById('btnNextRef');
+    if (btnRef) {
+      btnRef.addEventListener('click', function () {
+        btnRef.disabled = true;
+        fetch('/api/espa/next-ref', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ department: deptEl.value })
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            if (d && d.referenceNo) {
+              setVal('espaRef', d.referenceNo);
+              if (refHint) refHint.textContent = 'จองเลขนี้แล้ว ถ้าไม่ได้ส่ง เลขนี้จะถูกข้ามไป';
+            }
+          })
+          .catch(function () {
+            if (refHint) refHint.textContent = 'ออกเลขไม่สำเร็จ ลองใหม่อีกครั้ง';
+          })
+          .then(function () { btnRef.disabled = false; });
+      });
+    }
+  }
+
   // เปลี่ยน dropdown กลุ่มเป็นช่องกรอกอิสระเมื่อเลือกส่งหาผู้ใช้รายบุคคล
   document.getElementById('targetType').addEventListener('change', function (e) {
     const wrap = document.getElementById('targetSelect')

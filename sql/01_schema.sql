@@ -225,3 +225,20 @@ FROM media_files m
 LEFT JOIN line_groups g ON g.group_id = m.group_id
 WHERE m.status = 'stored'
 ORDER BY m.sent_at DESC;
+
+-- --------------------------------------------------------------------------
+-- 10) เลขที่เอกสารอัตโนมัติ (ใช้กับการ์ด Flex แยกแผนก)
+--     เก็บเลขล่าสุดแยกตามแผนกและปี เพื่อให้ได้เลขรันนิ่งที่ไม่ซ้ำกัน
+--     แม้มีคนกดส่งพร้อมกันหลายเครื่อง เพราะเพิ่มค่าด้วย UPDATE ... RETURNING
+--     ในคำสั่งเดียว ฐานข้อมูลล็อกแถวให้เอง
+--
+--     ตั้งใจไม่ใช้ SEQUENCE ของ PostgreSQL เพราะต้องแยกเลขรายปีและรายแผนก
+--     ซึ่งจะกลายเป็นการสร้าง sequence เป็นสิบตัวและต้องคอยสร้างเพิ่มทุกปี
+-- --------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS document_counters (
+  scope       TEXT    NOT NULL,
+  year        INT     NOT NULL,
+  last_number INT     NOT NULL DEFAULT 0,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (scope, year)
+);

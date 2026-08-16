@@ -4,7 +4,8 @@ import { config, reportScheduleNote } from '../config'
 import { getQuota } from '../line/client'
 import { setFlash, takeFlash } from '../middleware/auth'
 import { flexAnnouncement, flexDailySummary, flexExecutiveReport, flexTaskReminder } from '../services/flex'
-import { listEspaTemplates, loadEspaTemplate } from '../services/espaTemplates'
+import { listEspaPresets, listEspaTemplates, loadEspaTemplate } from '../services/espaTemplates'
+import { nextReferenceNo, peekReferenceNo } from '../services/documentNumbers'
 import { defaultGroupId, listGroups, updateGroup, upsertGroup } from '../services/groups'
 import {
   fetchMessagesForExport,
@@ -175,8 +176,31 @@ export function createAdminRouter(): Router {
       logs,
       preview: null,
       form: {},
-      espaTemplates: listEspaTemplates()
+      espaTemplates: listEspaTemplates(),
+      espaPresets: listEspaPresets()
     })
+  })
+
+  // ขอเลขที่เอกสารถัดไปของแผนก (กดปุ่ม "ออกเลข" ในฟอร์ม)
+  // เลขจะถูกจองทันที ถ้าไม่ได้ส่งจริงเลขนั้นจะข้ามไป ซึ่งยอมรับได้
+  // ดีกว่าให้เลขซ้ำกันสองใบแล้วอ้างอิงผิดตัว
+  router.post('/api/espa/next-ref', async (req: Request, res: Response) => {
+    const dept = str((req.body as Record<string, string>).department) ?? 'hr'
+    try {
+      res.json({ referenceNo: await nextReferenceNo(dept) })
+    } catch (err) {
+      res.status(500).json({ error: err instanceof Error ? err.message : 'ออกเลขไม่สำเร็จ' })
+    }
+  })
+
+  // ดูเลขถัดไปโดยไม่จอง ใช้แสดงเป็นคำใบ้ในฟอร์มตอนเปลี่ยนแผนก
+  router.get('/api/espa/peek-ref', async (req: Request, res: Response) => {
+    const dept = str(req.query.department) ?? 'hr'
+    try {
+      res.json({ referenceNo: await peekReferenceNo(dept) })
+    } catch (err) {
+      res.status(500).json({ error: err instanceof Error ? err.message : 'อ่านเลขไม่สำเร็จ' })
+    }
   })
 
   router.post('/send', async (req: Request, res: Response) => {
@@ -198,12 +222,19 @@ export function createAdminRouter(): Router {
         }
       } else if (body.flexMode === 'espa') {
         try {
-          const filled = loadEspaTemplate(str(body.espaDept) ?? 'hr', {
+          const dept = str(body.espaDept) ?? 'hr'
+          // เว้นช่องเลขอ้างอิงไว้ = ให้ระบบออกเลขให้ตอนส่งจริง
+          // ออกตอนนี้ ไม่ใช่ตอนเปิดหน้า เพื่อไม่ให้เลขถูกใช้ทิ้งไปตอนที่แค่เปิดดูเฉย ๆ
+          // ถ้ากดดูตัวอย่างก็ยังไม่ออกเลข เพราะยังไม่ได้ส่ง
+          let referenceNo = str(body.espaRef)
+          if (!referenceNo && action === 'send') referenceNo = await nextReferenceNo(dept)
+
+          const filled = loadEspaTemplate(dept, {
             ALT_TEXT: str(body.espaAltText),
             HERO_IMAGE_URL: str(body.espaHeroUrl),
             TITLE: str(body.espaTitle),
             MESSAGE: str(body.espaMessage),
-            REFERENCE_NO: str(body.espaRef),
+            REFERENCE_NO: referenceNo,
             STATUS: str(body.espaStatus),
             DATETIME: str(body.espaDatetime),
             OWNER: str(body.espaOwner),
@@ -239,6 +270,7 @@ export function createAdminRouter(): Router {
         preview: error ? null : { kind, text: body.text, altText, contents },
         form: body,
         espaTemplates: listEspaTemplates(),
+        espaPresets: listEspaPresets(),
         flash: error ? { type: 'error', text: error } : res.locals.flash
       })
       return
