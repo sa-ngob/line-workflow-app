@@ -1,0 +1,16 @@
+node_modules
+dist
+.git
+.env
+*.log
+logs/*.log
+reports/*.html
+storage
+pgdata
+deploy
+Notes
+*.md
+!README.md
+.DS_Store
+run-daily-report.bat
+docker-compose.yml
