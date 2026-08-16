@@ -1,0 +1,9 @@
+# สำรองข้อมูล LINE Workflow ทุกวัน
+# ติดตั้งที่ /etc/cron.d/espa-line-workflow-backup (สิทธิ์ 644 เจ้าของ root)
+#
+# เครื่องนี้ตั้งเวลาเป็น UTC  ->  19:15 UTC = 02:15 น. ตามเวลาไทย
+# เลือกช่วงนี้เพราะเป็นเวลาที่แทบไม่มีคนคุยในไลน์กลุ่ม และไม่ชนกับ
+#   - backup ของเว็บบริษัท   02:15 UTC
+#   - ตัวตั้งเวลาในแอป        01:00 UTC (รายงาน 08:00 น.) และ 11:00 UTC (สรุป 18:00 น.)
+
+15 19 * * * root /opt/espa/scripts/backup-line-workflow.sh >> /var/log/espa-line-workflow-backup.log 2>&1

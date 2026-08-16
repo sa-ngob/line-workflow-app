@@ -175,18 +175,43 @@ docker compose -f deploy/docker-compose.prod.yml logs -f app
 tail -f /var/log/nginx/line-workflow.error.log
 ```
 
-## สำรองข้อมูล — ต้องตั้งก่อนเปิดใช้จริง
+## สำรองข้อมูล
 
-สองอย่างนี้หายแล้วกู้ไม่ได้:
+ตั้งอัตโนมัติไว้แล้ว ทำงานทุกวัน **19:15 UTC (02:15 น. ไทย)**
+
+| ไฟล์ | ปลายทางบนเซิร์ฟเวอร์ |
+|---|---|
+| `deploy/backup-line-workflow.sh` | `/opt/espa/scripts/backup-line-workflow.sh` (700) |
+| `deploy/espa-line-workflow-backup.cron` | `/etc/cron.d/espa-line-workflow-backup` (644) |
+
+เก็บที่ `/opt/espa/backups/line-workflow/` แยกสองแบบตามธรรมชาติข้อมูล:
+
+- **ฐานข้อมูล** → `pg_dump` บีบอัด เก็บย้อนหลัง 14 วัน (เขียนลง `.part` ก่อนแล้วค่อยเปลี่ยนชื่อ ถ้าพังกลางคันจะไม่เหลือไฟล์ที่ดูสมบูรณ์แต่กู้ไม่ได้)
+- **ไฟล์สื่อ** → `rsync` แบบเพิ่มอย่างเดียว **ไม่ใส่ `--delete`** ไฟล์จาก LINE เขียนครั้งเดียวไม่แก้ซ้ำ การ tar ใหม่ทุกวันจะเปลืองที่เท่าจำนวนวันที่เก็บ และการไม่ลบตามต้นทางทำให้ไฟล์ที่ถูกลบพลาดยังกู้ได้ — LINE ลบต้นฉบับทิ้งเองหลังผ่านไประยะหนึ่ง ไม่มีที่อื่นให้กู้
+
+มีตัวกันดิสก์เต็ม: ถ้าเหลือน้อยกว่า 2 GB จะไม่ยอมทำงาน (กันไม่ให้ backup ทำเว็บอื่นบนเครื่องล่ม)
 
 ```bash
-# ฐานข้อมูล
-docker compose -f deploy/docker-compose.prod.yml exec -T postgres \
-  pg_dump -U lineapp linechat | gzip > /backup/linechat-$(date +%F).sql.gz
+# รันเองทันที
+/opt/espa/scripts/backup-line-workflow.sh
 
-# ไฟล์สื่อจาก LINE (LINE ลบต้นทางทิ้งหลังผ่านไประยะหนึ่ง ไม่มีที่อื่นให้กู้)
-docker run --rm -v line-workflow_line-workflow-media:/data -v /backup:/backup alpine \
-  tar czf /backup/media-$(date +%F).tar.gz -C /data .
+# ดู log
+tail -f /var/log/espa-line-workflow-backup.log
+```
+
+### กู้คืนฐานข้อมูล
+
+```bash
+f=$(ls -t /opt/espa/backups/line-workflow/postgres/linechat_*.sql.gz | head -1)
+zcat "$f" | docker exec -i line-workflow-postgres psql -U lineapp -d linechat
+docker restart line-workflow-app
+```
+
+### กู้คืนไฟล์สื่อ
+
+```bash
+vol=$(docker volume inspect line-workflow_line-workflow-media --format '{{.Mountpoint}}')
+rsync -a /opt/espa/backups/line-workflow/media/ "$vol/"
 ```
 
 ## ถอนออกทั้งหมด (ถ้าต้องการ)
