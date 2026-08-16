@@ -52,15 +52,17 @@ publish port ที่ `127.0.0.1` เท่านั้น แล้ว nginx �
 
 ## ขั้นที่ 1 — วางโค้ดบนเซิร์ฟเวอร์
 
-> ⚠️ **ห้าม deploy จาก `main`** — repo นี้เป็น repo สอน `main` คือ starter
+> ⚠️ **ห้าม deploy จาก `main`** — repo ต้นทางเป็น repo สอน `main` คือ starter
 > "Express Hello World" 6 ไฟล์ ที่ผู้เรียนใช้ clone ตอนเริ่มเวิร์กช็อป ไม่ใช่โค้ดแอป
 > โค้ดจริงอยู่บน `day2` (60 ไฟล์) และ deploy จาก branch **`production`** ที่แยกออกมาจาก `day2`
+
+deploy จาก fork `sa-ngob/line-workflow-app` (public จึง clone ได้เลย ไม่ต้องตั้ง deploy key)
 
 ```bash
 ssh root@147.50.255.198
 mkdir -p /opt/espa/apps
 cd /opt/espa/apps
-git clone -b production https://github.com/iamsamitdev/line-workflow-app.git line-workflow
+git clone -b production https://github.com/sa-ngob/line-workflow-app.git line-workflow
 cd line-workflow
 ```
 
@@ -154,9 +156,11 @@ curl -s -o /dev/null -w "%{http_code}\n" -X POST \
 
 เมื่อพัฒนาบน `day2` เสร็จและอยากเอาขึ้น production:
 
+remote บนเครื่อง dev ตั้งไว้สองตัว — `fork` = ของเรา (push ที่นี่), `origin` = ของอาจารย์ (ไว้ pull อย่างเดียว)
+
 ```bash
 # เครื่อง dev
-git checkout production && git merge day2 && git push origin production
+git checkout production && git merge day2 && git push fork production
 
 # เซิร์ฟเวอร์
 cd /opt/espa/apps/line-workflow
