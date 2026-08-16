@@ -217,10 +217,14 @@ export function loadEspaTemplate(key: string, values: EspaValues): EspaFilledMes
   }
 
   const contents = pruneFlex(message.contents)
-  const altText =
-    typeof message.altText === 'string' && message.altText.trim() !== ''
-      ? message.altText
-      : `ESPA Engineering | ${values.TITLE ?? 'แจ้งเตือน'}`
+
+  // ต้องล้างเครื่องหมาย "ไม่ได้กรอก" ก่อนเช็กว่าว่างไหม
+  // เพราะ .trim() ไม่ตัด U+0000 ออก ถ้าเช็กตรง ๆ จะได้ altText เป็นอักขระควบคุม
+  // แทนที่จะตกไปใช้ข้อความสำรอง
+  const rawAlt = typeof message.altText === 'string' ? message.altText.split(UNFILLED).join('').trim() : ''
+  const fallbackTitle = (values.TITLE ?? '').trim()
+  // LINE จำกัด altText ที่ 400 ตัวอักษร ตัดกันไว้ก่อนถูกปฏิเสธทั้งข้อความ
+  const altText = (rawAlt !== '' ? rawAlt : `ESPA Engineering | ${fallbackTitle || 'แจ้งเตือน'}`).slice(0, 400)
 
   return { key: safeKey, altText, contents }
 }

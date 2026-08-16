@@ -124,6 +124,15 @@ function run(): void {
       const problems: Problem[] = []
       findProblems(sparse.contents, 'contents', problems)
       problems.forEach((p) => issues.push(`[กรอกน้อย] ${p.path}: ${p.detail}`))
+
+      // altText ต้องอ่านออกเสมอ แม้ผู้ใช้ไม่ได้กรอกช่อง ALT_TEXT
+      // (เคยพลาดมาแล้ว: เครื่องหมาย "ไม่ได้กรอก" หลุดออกไปเป็น altText ทั้งดุ้น)
+      if (!sparse.altText.trim()) issues.push('[กรอกน้อย] altText ว่าง')
+      if (/[\u0000-\u001F]/.test(sparse.altText)) issues.push('[กรอกน้อย] altText มีอักขระควบคุมหลุดออกมา')
+      if (sparse.altText.length > 400) issues.push(`[กรอกน้อย] altText ยาว ${sparse.altText.length} (LINE จำกัด 400)`)
+
+      const leftNul = JSON.stringify(sparse.contents).includes('\u0000')
+      if (leftNul) issues.push('[กรอกน้อย] เหลืออักขระควบคุมใน contents')
     } catch (err) {
       issues.push(`[กรอกน้อย] โหลดไม่ได้: ${err instanceof Error ? err.message : String(err)}`)
     }
