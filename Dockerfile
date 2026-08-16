@@ -35,6 +35,8 @@ RUN npm ci --omit=dev && npm cache clean --force
 COPY --from=builder /app/dist ./dist
 # db-setup.js อ่านไฟล์ .sql จาก process.cwd()/sql ตอนรัน จึงต้องมีติดไปด้วย
 COPY sql ./sql
+# เทมเพลต Flex อ่านตอนรันเช่นกัน (espaTemplatesDir มองหา process.cwd()/espa-line-flex-templates)
+COPY espa-line-flex-templates ./espa-line-flex-templates
 
 # โฟลเดอร์ที่แอปต้องเขียนได้ (compose ผูก volume ทับอีกที)
 RUN mkdir -p storage/media reports logs \

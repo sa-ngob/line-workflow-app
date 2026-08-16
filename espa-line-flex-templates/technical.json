@@ -1,0 +1,225 @@
+﻿{
+    "type":  "flex",
+    "altText":  "ESPA Engineering | {{TECHNICAL_ALT_TEXT}}",
+    "contents":  {
+                     "type":  "bubble",
+                     "size":  "mega",
+                     "hero":  {
+                                  "type":  "image",
+                                  "url":  "{{TECHNICAL_HERO_IMAGE_URL}}",
+                                  "size":  "full",
+                                  "aspectRatio":  "20:9",
+                                  "aspectMode":  "cover",
+                                  "action":  {
+                                                 "type":  "uri",
+                                                 "label":  "เปิดรายละเอียด",
+                                                 "uri":  "{{TECHNICAL_PRIMARY_URL}}"
+                                             }
+                              },
+                     "header":  {
+                                    "type":  "box",
+                                    "layout":  "vertical",
+                                    "paddingAll":  "16px",
+                                    "backgroundColor":  "#1565C0",
+                                    "contents":  [
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "ESPA ENGINEERING",
+                                                         "color":  "#FFFFFF",
+                                                         "size":  "xs",
+                                                         "weight":  "bold"
+                                                     },
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "🛠️ ฝ่ายเทคนิค",
+                                                         "color":  "#FFFFFF",
+                                                         "size":  "xl",
+                                                         "weight":  "bold",
+                                                         "margin":  "sm",
+                                                         "wrap":  true
+                                                     }
+                                                 ]
+                                },
+                     "body":  {
+                                  "type":  "box",
+                                  "layout":  "vertical",
+                                  "paddingAll":  "20px",
+                                  "spacing":  "md",
+                                  "contents":  [
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{TECHNICAL_TITLE}}",
+                                                       "size":  "lg",
+                                                       "weight":  "bold",
+                                                       "color":  "#222222",
+                                                       "wrap":  true
+                                                   },
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{TECHNICAL_MESSAGE}}",
+                                                       "size":  "sm",
+                                                       "color":  "#555555",
+                                                       "wrap":  true
+                                                   },
+                                                   {
+                                                       "type":  "separator",
+                                                       "color":  "#E5E7EB",
+                                                       "margin":  "md"
+                                                   },
+                                                   {
+                                                       "type":  "box",
+                                                       "layout":  "vertical",
+                                                       "spacing":  "sm",
+                                                       "margin":  "md",
+                                                       "paddingAll":  "12px",
+                                                       "backgroundColor":  "#E3F2FD",
+                                                       "cornerRadius":  "8px",
+                                                       "contents":  [
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "เลขที่",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{TECHNICAL_REFERENCE_NO}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "weight":  "bold",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "สถานะ",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{TECHNICAL_STATUS}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#1565C0",
+                                                                                                 "weight":  "bold",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "วันที่/เวลา",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{TECHNICAL_DATETIME}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "ผู้รับผิดชอบ",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{TECHNICAL_OWNER}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        }
+                                                                    ]
+                                                   },
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{TECHNICAL_NOTE}}",
+                                                       "size":  "xs",
+                                                       "color":  "#777777",
+                                                       "wrap":  true,
+                                                       "margin":  "sm"
+                                                   }
+                                               ]
+                              },
+                     "footer":  {
+                                    "type":  "box",
+                                    "layout":  "vertical",
+                                    "spacing":  "sm",
+                                    "paddingAll":  "16px",
+                                    "contents":  [
+                                                     {
+                                                         "type":  "button",
+                                                         "style":  "primary",
+                                                         "color":  "#1565C0",
+                                                         "height":  "sm",
+                                                         "action":  {
+                                                                        "type":  "uri",
+                                                                        "label":  "ดูใบงาน",
+                                                                        "uri":  "{{TECHNICAL_PRIMARY_URL}}"
+                                                                    }
+                                                     },
+                                                     {
+                                                         "type":  "button",
+                                                         "style":  "link",
+                                                         "height":  "sm",
+                                                         "action":  {
+                                                                        "type":  "uri",
+                                                                        "label":  "ติดต่อ Technical",
+                                                                        "uri":  "{{TECHNICAL_SECONDARY_URL}}"
+                                                                    }
+                                                     },
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "ESPA Engineering • Internal Use",
+                                                         "size":  "xxs",
+                                                         "color":  "#999999",
+                                                         "align":  "center",
+                                                         "margin":  "md",
+                                                         "wrap":  true
+                                                     }
+                                                 ]
+                                },
+                     "styles":  {
+                                    "footer":  {
+                                                   "separator":  true,
+                                                   "separatorColor":  "#E5E7EB"
+                                               }
+                                }
+                 }
+}

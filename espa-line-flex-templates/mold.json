@@ -1,0 +1,225 @@
+﻿{
+    "type":  "flex",
+    "altText":  "ESPA Engineering | {{MOLD_ALT_TEXT}}",
+    "contents":  {
+                     "type":  "bubble",
+                     "size":  "mega",
+                     "hero":  {
+                                  "type":  "image",
+                                  "url":  "{{MOLD_HERO_IMAGE_URL}}",
+                                  "size":  "full",
+                                  "aspectRatio":  "20:9",
+                                  "aspectMode":  "cover",
+                                  "action":  {
+                                                 "type":  "uri",
+                                                 "label":  "เปิดรายละเอียด",
+                                                 "uri":  "{{MOLD_PRIMARY_URL}}"
+                                             }
+                              },
+                     "header":  {
+                                    "type":  "box",
+                                    "layout":  "vertical",
+                                    "paddingAll":  "16px",
+                                    "backgroundColor":  "#6A1B9A",
+                                    "contents":  [
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "ESPA ENGINEERING",
+                                                         "color":  "#FFFFFF",
+                                                         "size":  "xs",
+                                                         "weight":  "bold"
+                                                     },
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "⚙️ ฝ่ายแม่พิมพ์",
+                                                         "color":  "#FFFFFF",
+                                                         "size":  "xl",
+                                                         "weight":  "bold",
+                                                         "margin":  "sm",
+                                                         "wrap":  true
+                                                     }
+                                                 ]
+                                },
+                     "body":  {
+                                  "type":  "box",
+                                  "layout":  "vertical",
+                                  "paddingAll":  "20px",
+                                  "spacing":  "md",
+                                  "contents":  [
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{MOLD_TITLE}}",
+                                                       "size":  "lg",
+                                                       "weight":  "bold",
+                                                       "color":  "#222222",
+                                                       "wrap":  true
+                                                   },
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{MOLD_MESSAGE}}",
+                                                       "size":  "sm",
+                                                       "color":  "#555555",
+                                                       "wrap":  true
+                                                   },
+                                                   {
+                                                       "type":  "separator",
+                                                       "color":  "#E5E7EB",
+                                                       "margin":  "md"
+                                                   },
+                                                   {
+                                                       "type":  "box",
+                                                       "layout":  "vertical",
+                                                       "spacing":  "sm",
+                                                       "margin":  "md",
+                                                       "paddingAll":  "12px",
+                                                       "backgroundColor":  "#F3E5F5",
+                                                       "cornerRadius":  "8px",
+                                                       "contents":  [
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "เลขที่",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{MOLD_REFERENCE_NO}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "weight":  "bold",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "สถานะ",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{MOLD_STATUS}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#6A1B9A",
+                                                                                                 "weight":  "bold",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "วันที่/เวลา",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{MOLD_DATETIME}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        },
+                                                                        {
+                                                                            "type":  "box",
+                                                                            "layout":  "horizontal",
+                                                                            "contents":  [
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "ผู้รับผิดชอบ",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#666666",
+                                                                                                 "flex":  2
+                                                                                             },
+                                                                                             {
+                                                                                                 "type":  "text",
+                                                                                                 "text":  "{{MOLD_OWNER}}",
+                                                                                                 "size":  "sm",
+                                                                                                 "color":  "#222222",
+                                                                                                 "align":  "end",
+                                                                                                 "wrap":  true,
+                                                                                                 "flex":  3
+                                                                                             }
+                                                                                         ]
+                                                                        }
+                                                                    ]
+                                                   },
+                                                   {
+                                                       "type":  "text",
+                                                       "text":  "{{MOLD_NOTE}}",
+                                                       "size":  "xs",
+                                                       "color":  "#777777",
+                                                       "wrap":  true,
+                                                       "margin":  "sm"
+                                                   }
+                                               ]
+                              },
+                     "footer":  {
+                                    "type":  "box",
+                                    "layout":  "vertical",
+                                    "spacing":  "sm",
+                                    "paddingAll":  "16px",
+                                    "contents":  [
+                                                     {
+                                                         "type":  "button",
+                                                         "style":  "primary",
+                                                         "color":  "#6A1B9A",
+                                                         "height":  "sm",
+                                                         "action":  {
+                                                                        "type":  "uri",
+                                                                        "label":  "ดูข้อมูลงาน Mold",
+                                                                        "uri":  "{{MOLD_PRIMARY_URL}}"
+                                                                    }
+                                                     },
+                                                     {
+                                                         "type":  "button",
+                                                         "style":  "link",
+                                                         "height":  "sm",
+                                                         "action":  {
+                                                                        "type":  "uri",
+                                                                        "label":  "แจ้งซ่อมแม่พิมพ์",
+                                                                        "uri":  "{{MOLD_SECONDARY_URL}}"
+                                                                    }
+                                                     },
+                                                     {
+                                                         "type":  "text",
+                                                         "text":  "ESPA Engineering • Internal Use",
+                                                         "size":  "xxs",
+                                                         "color":  "#999999",
+                                                         "align":  "center",
+                                                         "margin":  "md",
+                                                         "wrap":  true
+                                                     }
+                                                 ]
+                                },
+                     "styles":  {
+                                    "footer":  {
+                                                   "separator":  true,
+                                                   "separatorColor":  "#E5E7EB"
+                                               }
+                                }
+                 }
+}
