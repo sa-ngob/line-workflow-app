@@ -1,225 +1,233 @@
-﻿{
-    "type":  "flex",
-    "altText":  "ESPA Engineering | {{SALE_ALT_TEXT}}",
-    "contents":  {
-                     "type":  "bubble",
-                     "size":  "mega",
-                     "hero":  {
-                                  "type":  "image",
-                                  "url":  "{{SALE_HERO_IMAGE_URL}}",
-                                  "size":  "full",
-                                  "aspectRatio":  "20:9",
-                                  "aspectMode":  "cover",
-                                  "action":  {
-                                                 "type":  "uri",
-                                                 "label":  "เปิดรายละเอียด",
-                                                 "uri":  "{{SALE_PRIMARY_URL}}"
-                                             }
-                              },
-                     "header":  {
-                                    "type":  "box",
-                                    "layout":  "vertical",
-                                    "paddingAll":  "16px",
-                                    "backgroundColor":  "#00838F",
-                                    "contents":  [
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "ESPA ENGINEERING",
-                                                         "color":  "#FFFFFF",
-                                                         "size":  "xs",
-                                                         "weight":  "bold"
-                                                     },
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "🤝 ฝ่ายขาย",
-                                                         "color":  "#FFFFFF",
-                                                         "size":  "xl",
-                                                         "weight":  "bold",
-                                                         "margin":  "sm",
-                                                         "wrap":  true
-                                                     }
-                                                 ]
-                                },
-                     "body":  {
-                                  "type":  "box",
-                                  "layout":  "vertical",
-                                  "paddingAll":  "20px",
-                                  "spacing":  "md",
-                                  "contents":  [
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{SALE_TITLE}}",
-                                                       "size":  "lg",
-                                                       "weight":  "bold",
-                                                       "color":  "#222222",
-                                                       "wrap":  true
-                                                   },
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{SALE_MESSAGE}}",
-                                                       "size":  "sm",
-                                                       "color":  "#555555",
-                                                       "wrap":  true
-                                                   },
-                                                   {
-                                                       "type":  "separator",
-                                                       "color":  "#E5E7EB",
-                                                       "margin":  "md"
-                                                   },
-                                                   {
-                                                       "type":  "box",
-                                                       "layout":  "vertical",
-                                                       "spacing":  "sm",
-                                                       "margin":  "md",
-                                                       "paddingAll":  "12px",
-                                                       "backgroundColor":  "#E0F7FA",
-                                                       "cornerRadius":  "8px",
-                                                       "contents":  [
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "เลขที่",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{SALE_REFERENCE_NO}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "weight":  "bold",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "สถานะ",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{SALE_STATUS}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#00838F",
-                                                                                                 "weight":  "bold",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "วันที่/เวลา",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{SALE_DATETIME}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "ผู้รับผิดชอบ",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{SALE_OWNER}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        }
-                                                                    ]
-                                                   },
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{SALE_NOTE}}",
-                                                       "size":  "xs",
-                                                       "color":  "#777777",
-                                                       "wrap":  true,
-                                                       "margin":  "sm"
-                                                   }
-                                               ]
-                              },
-                     "footer":  {
-                                    "type":  "box",
-                                    "layout":  "vertical",
-                                    "spacing":  "sm",
-                                    "paddingAll":  "16px",
-                                    "contents":  [
-                                                     {
-                                                         "type":  "button",
-                                                         "style":  "primary",
-                                                         "color":  "#00838F",
-                                                         "height":  "sm",
-                                                         "action":  {
-                                                                        "type":  "uri",
-                                                                        "label":  "ดูข้อมูลลูกค้า",
-                                                                        "uri":  "{{SALE_PRIMARY_URL}}"
-                                                                    }
-                                                     },
-                                                     {
-                                                         "type":  "button",
-                                                         "style":  "link",
-                                                         "height":  "sm",
-                                                         "action":  {
-                                                                        "type":  "uri",
-                                                                        "label":  "ติดต่อฝ่ายขาย",
-                                                                        "uri":  "{{SALE_SECONDARY_URL}}"
-                                                                    }
-                                                     },
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "ESPA Engineering • Internal Use",
-                                                         "size":  "xxs",
-                                                         "color":  "#999999",
-                                                         "align":  "center",
-                                                         "margin":  "md",
-                                                         "wrap":  true
-                                                     }
-                                                 ]
-                                },
-                     "styles":  {
-                                    "footer":  {
-                                                   "separator":  true,
-                                                   "separatorColor":  "#E5E7EB"
-                                               }
-                                }
-                 }
+{
+  "type": "flex",
+  "altText": "{{SALE_ALT_TEXT}}",
+  "contents": {
+    "type": "bubble",
+    "size": "mega",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "backgroundColor": "#15803D",
+      "paddingAll": "20px",
+      "spacing": "none",
+      "contents": [
+        {
+          "type": "text",
+          "text": "ESPA ENGINEERING",
+          "size": "xxs",
+          "color": "#BBF7D0",
+          "weight": "bold"
+        },
+        {
+          "type": "text",
+          "text": "ฝ่ายขาย · SALES",
+          "size": "sm",
+          "color": "#FFFFFF",
+          "weight": "bold",
+          "margin": "sm",
+          "wrap": true
+        }
+      ]
+    },
+    "hero": {
+      "type": "image",
+      "url": "{{SALE_HERO_IMAGE_URL}}",
+      "size": "full",
+      "aspectRatio": "20:9",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "label": "เปิดดู",
+        "uri": "{{SALE_PRIMARY_URL}}"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "paddingAll": "20px",
+      "spacing": "md",
+      "contents": [
+        {
+          "type": "text",
+          "text": "{{SALE_TITLE}}",
+          "size": "xl",
+          "weight": "bold",
+          "color": "#0F172A",
+          "wrap": true
+        },
+        {
+          "type": "text",
+          "text": "{{SALE_MESSAGE}}",
+          "size": "sm",
+          "color": "#475569",
+          "wrap": true
+        },
+        {
+          "type": "separator",
+          "margin": "lg",
+          "color": "#E2E8F0"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เลขที่ใบสั่งซื้อ",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{SALE_REFERENCE_NO}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "สถานะออเดอร์",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{SALE_STATUS}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "กำหนดส่งมอบ",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{SALE_DATETIME}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ผู้ดูแลลูกค้า",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{SALE_OWNER}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "backgroundColor": "#F0FDF4",
+          "cornerRadius": "10px",
+          "paddingAll": "14px",
+          "margin": "lg",
+          "contents": [
+            {
+              "type": "text",
+              "text": "{{SALE_NOTE}}",
+              "size": "xs",
+              "color": "#475569",
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "paddingAll": "16px",
+      "paddingTop": "0px",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "#15803D",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "ดูรายละเอียดออเดอร์",
+            "uri": "{{SALE_PRIMARY_URL}}"
+          }
+        },
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "ติดต่อฝ่ายขาย",
+            "uri": "{{SALE_SECONDARY_URL}}"
+          }
+        },
+        {
+          "type": "text",
+          "text": "ESPA Engineering · ระบบแจ้งเตือนภายใน",
+          "size": "xxs",
+          "color": "#94A3B8",
+          "align": "center",
+          "margin": "md",
+          "wrap": true
+        }
+      ]
+    }
+  }
 }

@@ -1,225 +1,233 @@
-﻿{
-    "type":  "flex",
-    "altText":  "ESPA Engineering | {{ACCOUNT_ALT_TEXT}}",
-    "contents":  {
-                     "type":  "bubble",
-                     "size":  "mega",
-                     "hero":  {
-                                  "type":  "image",
-                                  "url":  "{{ACCOUNT_HERO_IMAGE_URL}}",
-                                  "size":  "full",
-                                  "aspectRatio":  "20:9",
-                                  "aspectMode":  "cover",
-                                  "action":  {
-                                                 "type":  "uri",
-                                                 "label":  "เปิดรายละเอียด",
-                                                 "uri":  "{{ACCOUNT_PRIMARY_URL}}"
-                                             }
-                              },
-                     "header":  {
-                                    "type":  "box",
-                                    "layout":  "vertical",
-                                    "paddingAll":  "16px",
-                                    "backgroundColor":  "#2E7D32",
-                                    "contents":  [
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "ESPA ENGINEERING",
-                                                         "color":  "#FFFFFF",
-                                                         "size":  "xs",
-                                                         "weight":  "bold"
-                                                     },
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "💳 ฝ่ายบัญชีและการเงิน",
-                                                         "color":  "#FFFFFF",
-                                                         "size":  "xl",
-                                                         "weight":  "bold",
-                                                         "margin":  "sm",
-                                                         "wrap":  true
-                                                     }
-                                                 ]
-                                },
-                     "body":  {
-                                  "type":  "box",
-                                  "layout":  "vertical",
-                                  "paddingAll":  "20px",
-                                  "spacing":  "md",
-                                  "contents":  [
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{ACCOUNT_TITLE}}",
-                                                       "size":  "lg",
-                                                       "weight":  "bold",
-                                                       "color":  "#222222",
-                                                       "wrap":  true
-                                                   },
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{ACCOUNT_MESSAGE}}",
-                                                       "size":  "sm",
-                                                       "color":  "#555555",
-                                                       "wrap":  true
-                                                   },
-                                                   {
-                                                       "type":  "separator",
-                                                       "color":  "#E5E7EB",
-                                                       "margin":  "md"
-                                                   },
-                                                   {
-                                                       "type":  "box",
-                                                       "layout":  "vertical",
-                                                       "spacing":  "sm",
-                                                       "margin":  "md",
-                                                       "paddingAll":  "12px",
-                                                       "backgroundColor":  "#E8F5E9",
-                                                       "cornerRadius":  "8px",
-                                                       "contents":  [
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "เลขที่",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{ACCOUNT_REFERENCE_NO}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "weight":  "bold",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "สถานะ",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{ACCOUNT_STATUS}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#2E7D32",
-                                                                                                 "weight":  "bold",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "วันที่/เวลา",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{ACCOUNT_DATETIME}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        },
-                                                                        {
-                                                                            "type":  "box",
-                                                                            "layout":  "horizontal",
-                                                                            "contents":  [
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "ผู้รับผิดชอบ",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#666666",
-                                                                                                 "flex":  2
-                                                                                             },
-                                                                                             {
-                                                                                                 "type":  "text",
-                                                                                                 "text":  "{{ACCOUNT_OWNER}}",
-                                                                                                 "size":  "sm",
-                                                                                                 "color":  "#222222",
-                                                                                                 "align":  "end",
-                                                                                                 "wrap":  true,
-                                                                                                 "flex":  3
-                                                                                             }
-                                                                                         ]
-                                                                        }
-                                                                    ]
-                                                   },
-                                                   {
-                                                       "type":  "text",
-                                                       "text":  "{{ACCOUNT_NOTE}}",
-                                                       "size":  "xs",
-                                                       "color":  "#777777",
-                                                       "wrap":  true,
-                                                       "margin":  "sm"
-                                                   }
-                                               ]
-                              },
-                     "footer":  {
-                                    "type":  "box",
-                                    "layout":  "vertical",
-                                    "spacing":  "sm",
-                                    "paddingAll":  "16px",
-                                    "contents":  [
-                                                     {
-                                                         "type":  "button",
-                                                         "style":  "primary",
-                                                         "color":  "#2E7D32",
-                                                         "height":  "sm",
-                                                         "action":  {
-                                                                        "type":  "uri",
-                                                                        "label":  "ตรวจสอบเอกสาร",
-                                                                        "uri":  "{{ACCOUNT_PRIMARY_URL}}"
-                                                                    }
-                                                     },
-                                                     {
-                                                         "type":  "button",
-                                                         "style":  "link",
-                                                         "height":  "sm",
-                                                         "action":  {
-                                                                        "type":  "uri",
-                                                                        "label":  "ติดต่อบัญชี",
-                                                                        "uri":  "{{ACCOUNT_SECONDARY_URL}}"
-                                                                    }
-                                                     },
-                                                     {
-                                                         "type":  "text",
-                                                         "text":  "ESPA Engineering • Internal Use",
-                                                         "size":  "xxs",
-                                                         "color":  "#999999",
-                                                         "align":  "center",
-                                                         "margin":  "md",
-                                                         "wrap":  true
-                                                     }
-                                                 ]
-                                },
-                     "styles":  {
-                                    "footer":  {
-                                                   "separator":  true,
-                                                   "separatorColor":  "#E5E7EB"
-                                               }
-                                }
-                 }
+{
+  "type": "flex",
+  "altText": "{{ACCOUNT_ALT_TEXT}}",
+  "contents": {
+    "type": "bubble",
+    "size": "mega",
+    "header": {
+      "type": "box",
+      "layout": "vertical",
+      "backgroundColor": "#B45309",
+      "paddingAll": "20px",
+      "spacing": "none",
+      "contents": [
+        {
+          "type": "text",
+          "text": "ESPA ENGINEERING",
+          "size": "xxs",
+          "color": "#FDE68A",
+          "weight": "bold"
+        },
+        {
+          "type": "text",
+          "text": "ฝ่ายบัญชีและการเงิน · ACCOUNTING",
+          "size": "sm",
+          "color": "#FFFFFF",
+          "weight": "bold",
+          "margin": "sm",
+          "wrap": true
+        }
+      ]
+    },
+    "hero": {
+      "type": "image",
+      "url": "{{ACCOUNT_HERO_IMAGE_URL}}",
+      "size": "full",
+      "aspectRatio": "20:9",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "label": "เปิดดู",
+        "uri": "{{ACCOUNT_PRIMARY_URL}}"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "paddingAll": "20px",
+      "spacing": "md",
+      "contents": [
+        {
+          "type": "text",
+          "text": "{{ACCOUNT_TITLE}}",
+          "size": "xl",
+          "weight": "bold",
+          "color": "#0F172A",
+          "wrap": true
+        },
+        {
+          "type": "text",
+          "text": "{{ACCOUNT_MESSAGE}}",
+          "size": "sm",
+          "color": "#475569",
+          "wrap": true
+        },
+        {
+          "type": "separator",
+          "margin": "lg",
+          "color": "#E2E8F0"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "เลขที่เอกสาร",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{ACCOUNT_REFERENCE_NO}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "สถานะชำระ",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{ACCOUNT_STATUS}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ครบกำหนด",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{ACCOUNT_DATETIME}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "ผู้ติดต่อ",
+                  "size": "sm",
+                  "color": "#94A3B8",
+                  "flex": 4,
+                  "wrap": true
+                },
+                {
+                  "type": "text",
+                  "text": "{{ACCOUNT_OWNER}}",
+                  "size": "sm",
+                  "color": "#0F172A",
+                  "weight": "bold",
+                  "flex": 6,
+                  "align": "end",
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "backgroundColor": "#FFFBEB",
+          "cornerRadius": "10px",
+          "paddingAll": "14px",
+          "margin": "lg",
+          "contents": [
+            {
+              "type": "text",
+              "text": "{{ACCOUNT_NOTE}}",
+              "size": "xs",
+              "color": "#475569",
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "paddingAll": "16px",
+      "paddingTop": "0px",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "color": "#B45309",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "ดูเอกสาร",
+            "uri": "{{ACCOUNT_PRIMARY_URL}}"
+          }
+        },
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "แจ้งชำระเงิน",
+            "uri": "{{ACCOUNT_SECONDARY_URL}}"
+          }
+        },
+        {
+          "type": "text",
+          "text": "ESPA Engineering · ระบบแจ้งเตือนภายใน",
+          "size": "xxs",
+          "color": "#94A3B8",
+          "align": "center",
+          "margin": "md",
+          "wrap": true
+        }
+      ]
+    }
+  }
 }
