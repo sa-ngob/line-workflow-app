@@ -57,12 +57,88 @@
       <div>
         <label class="label">วิธีสร้าง Flex</label>
         <select name="flexMode" class="input" id="flexMode" onchange="toggleFlexMode()">
-          <option value="template" <%= form.flexMode !== 'raw' ? 'selected' : '' %>>ใช้เทมเพลตประกาศภายในองค์กร</option>
+          <option value="template" <%= (!form.flexMode || form.flexMode === 'template') ? 'selected' : '' %>>ใช้เทมเพลตประกาศภายในองค์กร</option>
+          <option value="espa" <%= form.flexMode === 'espa' ? 'selected' : '' %>>ESPA เทมเพลตแยกแผนก</option>
           <option value="raw" <%= form.flexMode === 'raw' ? 'selected' : '' %>>วาง JSON เอง (จาก Flex Simulator)</option>
         </select>
       </div>
 
-      <div id="blockTemplate" class="space-y-3 <%= form.flexMode === 'raw' ? 'hidden' : '' %>">
+      <!-- ESPA: เทมเพลตแยกตามแผนก (โฟลเดอร์ espa-line-flex-templates) -->
+      <div id="blockEspa" class="space-y-3 <%= form.flexMode === 'espa' ? '' : 'hidden' %>">
+        <% if (!espaTemplates || espaTemplates.length === 0) { %>
+          <div class="rounded-xl bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-800">
+            ไม่พบไฟล์เทมเพลตในโฟลเดอร์ <code class="bg-white px-1 rounded">espa-line-flex-templates</code>
+            ตรวจว่าโฟลเดอร์อยู่ระดับเดียวกับ <code class="bg-white px-1 rounded">line-workflow-app</code>
+            หรือกำหนด <code class="bg-white px-1 rounded">ESPA_TEMPLATES_DIR</code> ใน .env
+          </div>
+        <% } else { %>
+        <div>
+          <label class="label">แผนก</label>
+          <select name="espaDept" class="input">
+            <% espaTemplates.forEach(function (t) { %>
+              <option value="<%= t.key %>" <%= form.espaDept === t.key ? 'selected' : '' %>><%= t.label %></option>
+            <% }) %>
+          </select>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="label">หัวข้อ (TITLE)</label>
+            <input name="espaTitle" value="<%= form.espaTitle || 'แจ้งผลอนุมัติการลา' %>" class="input">
+          </div>
+          <div>
+            <label class="label">altText (ข้อความสำรอง)</label>
+            <input name="espaAltText" value="<%= form.espaAltText || 'แจ้งเตือนเอกสารใหม่' %>" class="input">
+          </div>
+        </div>
+        <div>
+          <label class="label">รายละเอียด (MESSAGE)</label>
+          <textarea name="espaMessage" rows="2" class="input"><%= form.espaMessage || 'คำขอลาของคุณได้รับการอนุมัติแล้ว โปรดตรวจสอบรายละเอียดในระบบ' %></textarea>
+        </div>
+        <div class="grid md:grid-cols-3 gap-3">
+          <div>
+            <label class="label">เลขอ้างอิง</label>
+            <input name="espaRef" value="<%= form.espaRef || 'HR-2026-00125' %>" class="input">
+          </div>
+          <div>
+            <label class="label">สถานะ</label>
+            <input name="espaStatus" value="<%= form.espaStatus || 'อนุมัติแล้ว' %>" class="input">
+          </div>
+          <div>
+            <label class="label">วันที่/เวลา</label>
+            <input name="espaDatetime" value="<%= form.espaDatetime || '16 ส.ค. 2026 09:30' %>" class="input">
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="label">ผู้รับผิดชอบ</label>
+            <input name="espaOwner" value="<%= form.espaOwner || 'ฝ่ายทรัพยากรบุคคล' %>" class="input">
+          </div>
+          <div>
+            <label class="label">หมายเหตุ (ไม่ใส่ก็ได้)</label>
+            <input name="espaNote" value="<%= form.espaNote || 'โปรดตรวจสอบรายละเอียดภายใน 3 วัน' %>" class="input">
+          </div>
+        </div>
+        <div>
+          <label class="label">รูป Hero (URL https, เว้นว่าง = ไม่แสดงรูป)</label>
+          <input name="espaHeroUrl" value="<%= form.espaHeroUrl || '' %>" class="input" placeholder="https://example.com/images/hr.jpg">
+        </div>
+        <div class="grid md:grid-cols-2 gap-3">
+          <div>
+            <label class="label">ลิงก์ปุ่มหลัก (เว้นว่าง = ซ่อนปุ่ม)</label>
+            <input name="espaPrimaryUrl" value="<%= form.espaPrimaryUrl || '' %>" class="input" placeholder="https://intranet.example.com/hr/125">
+          </div>
+          <div>
+            <label class="label">ลิงก์ปุ่มรอง (เว้นว่าง = ซ่อนปุ่ม)</label>
+            <input name="espaSecondaryUrl" value="<%= form.espaSecondaryUrl || '' %>" class="input" placeholder="https://intranet.example.com/contact/hr">
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400">
+          หัวสี/โลโก้แผนกมาจากไฟล์เทมเพลตของแต่ละแผนกในโฟลเดอร์ <code>espa-line-flex-templates</code>
+        </p>
+        <% } %>
+      </div>
+
+      <div id="blockTemplate" class="space-y-3 <%= (form.flexMode === 'raw' || form.flexMode === 'espa') ? 'hidden' : '' %>">
         <div class="grid md:grid-cols-2 gap-3">
           <div>
             <label class="label">หัวเรื่อง</label>
@@ -161,9 +237,10 @@
     document.getElementById('blockFlex').classList.toggle('hidden', !isFlex)
   }
   function toggleFlexMode() {
-    const raw = document.getElementById('flexMode').value === 'raw'
-    document.getElementById('blockRaw').classList.toggle('hidden', !raw)
-    document.getElementById('blockTemplate').classList.toggle('hidden', raw)
+    const mode = document.getElementById('flexMode').value
+    document.getElementById('blockRaw').classList.toggle('hidden', mode !== 'raw')
+    document.getElementById('blockTemplate').classList.toggle('hidden', mode !== 'template')
+    document.getElementById('blockEspa').classList.toggle('hidden', mode !== 'espa')
   }
   // เปลี่ยน dropdown กลุ่มเป็นช่องกรอกอิสระเมื่อเลือกส่งหาผู้ใช้รายบุคคล
   document.getElementById('targetType').addEventListener('change', function (e) {

@@ -1,0 +1,205 @@
+{
+  "type": "bubble",
+  "size": "mega",
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "paddingAll": "0px",
+    "contents": [
+      {
+        "type": "box",
+        "layout": "vertical",
+        "paddingAll": "20px",
+        "spacing": "none",
+        "background": {
+          "type": "linearGradient",
+          "angle": "135deg",
+          "startColor": "#0C1628",
+          "endColor": "#0F8B5E"
+        },
+        "contents": [
+          {
+            "type": "box",
+            "layout": "baseline",
+            "contents": [
+              {
+                "type": "text",
+                "text": "SIAM SMART TRADE",
+                "size": "xxs",
+                "color": "#B9F6CA",
+                "weight": "bold",
+                "flex": 0
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "text": "โปรสมาชิกใหม่",
+            "size": "xs",
+            "color": "#9AE6B4",
+            "weight": "bold",
+            "margin": "lg"
+          },
+          {
+            "type": "text",
+            "text": "รับส่วนลดสูงสุด 20%",
+            "size": "xxl",
+            "color": "#FFFFFF",
+            "weight": "bold",
+            "wrap": true,
+            "margin": "sm"
+          },
+          {
+            "type": "text",
+            "text": "เมื่อสมัครสมาชิกและสั่งซื้อครั้งแรกภายในวันนี้",
+            "size": "sm",
+            "color": "#E5E7EB",
+            "wrap": true,
+            "margin": "sm"
+          }
+        ]
+      },
+      {
+        "type": "box",
+        "layout": "vertical",
+        "paddingAll": "20px",
+        "spacing": "md",
+        "contents": [
+          {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#ECFDF5",
+            "cornerRadius": "12px",
+            "paddingAll": "16px",
+            "spacing": "xs",
+            "contents": [
+              {
+                "type": "text",
+                "text": "ราคาสมาชิกวันนี้",
+                "size": "xs",
+                "color": "#8A94A6"
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  {
+                    "type": "text",
+                    "text": "฿990",
+                    "size": "xxl",
+                    "weight": "bold",
+                    "color": "#0C1628",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "฿1,290",
+                    "size": "sm",
+                    "color": "#8A94A6",
+                    "decoration": "line-through",
+                    "gravity": "center",
+                    "flex": 0
+                  },
+                  {
+                    "type": "text",
+                    "text": "ประหยัด 23%",
+                    "size": "xs",
+                    "weight": "bold",
+                    "color": "#06C755",
+                    "align": "end",
+                    "gravity": "center"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "margin": "md",
+            "contents": [
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  { "type": "text", "text": "✓", "size": "sm", "color": "#06C755", "weight": "bold", "flex": 0 },
+                  { "type": "text", "text": "จัดส่งฟรีทั่วประเทศ ไม่มีขั้นต่ำ", "size": "sm", "color": "#374151", "wrap": true }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  { "type": "text", "text": "✓", "size": "sm", "color": "#06C755", "weight": "bold", "flex": 0 },
+                  { "type": "text", "text": "รับประกันสินค้าแท้ 1 ปีเต็ม", "size": "sm", "color": "#374151", "wrap": true }
+                ]
+              },
+              {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                  { "type": "text", "text": "✓", "size": "sm", "color": "#06C755", "weight": "bold", "flex": 0 },
+                  { "type": "text", "text": "สะสมแต้มแลกส่วนลดได้ทุกออเดอร์", "size": "sm", "color": "#374151", "wrap": true }
+                ]
+              }
+            ]
+          },
+          { "type": "separator", "margin": "lg", "color": "#E5E7EB" },
+          {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+              { "type": "text", "text": "ระยะเวลาโปรโมชัน", "size": "xs", "color": "#8A94A6", "flex": 0 },
+              { "type": "text", "text": "1 – 31 ส.ค. 2026", "size": "xs", "color": "#111827", "weight": "bold", "align": "end" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "type": "box",
+    "layout": "vertical",
+    "spacing": "sm",
+    "paddingAll": "16px",
+    "paddingTop": "0px",
+    "contents": [
+      {
+        "type": "button",
+        "style": "primary",
+        "color": "#06C755",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "รับสิทธิ์เลย",
+          "uri": "https://example.com/promo"
+        }
+      },
+      {
+        "type": "button",
+        "style": "link",
+        "height": "sm",
+        "action": {
+          "type": "uri",
+          "label": "ดูรายละเอียด",
+          "uri": "https://example.com/details"
+        }
+      },
+      {
+        "type": "text",
+        "text": "เงื่อนไขเป็นไปตามที่บริษัทกำหนด",
+        "size": "xxs",
+        "color": "#8A94A6",
+        "align": "center",
+        "margin": "sm",
+        "wrap": true
+      }
+    ]
+  }
+}

@@ -4,6 +4,7 @@ import { config, reportScheduleNote } from '../config'
 import { getQuota } from '../line/client'
 import { setFlash, takeFlash } from '../middleware/auth'
 import { flexAnnouncement, flexDailySummary, flexExecutiveReport, flexTaskReminder } from '../services/flex'
+import { listEspaTemplates, loadEspaTemplate } from '../services/espaTemplates'
 import { defaultGroupId, listGroups, updateGroup, upsertGroup } from '../services/groups'
 import {
   fetchMessagesForExport,
@@ -169,7 +170,13 @@ export function createAdminRouter(): Router {
   // -------------------------------------------------------------------------
   router.get('/send', async (_req: Request, res: Response) => {
     const logs = await listLogs(15)
-    res.render('send', { title: 'ส่งข้อความ', logs, preview: null, form: {} })
+    res.render('send', {
+      title: 'ส่งข้อความ',
+      logs,
+      preview: null,
+      form: {},
+      espaTemplates: listEspaTemplates()
+    })
   })
 
   router.post('/send', async (req: Request, res: Response) => {
@@ -188,6 +195,26 @@ export function createAdminRouter(): Router {
           contents = JSON.parse(body.rawJson ?? '{}')
         } catch (err) {
           error = `JSON ไม่ถูกต้อง: ${err instanceof Error ? err.message : String(err)}`
+        }
+      } else if (body.flexMode === 'espa') {
+        try {
+          const filled = loadEspaTemplate(str(body.espaDept) ?? 'hr', {
+            ALT_TEXT: str(body.espaAltText),
+            HERO_IMAGE_URL: str(body.espaHeroUrl),
+            TITLE: str(body.espaTitle),
+            MESSAGE: str(body.espaMessage),
+            REFERENCE_NO: str(body.espaRef),
+            STATUS: str(body.espaStatus),
+            DATETIME: str(body.espaDatetime),
+            OWNER: str(body.espaOwner),
+            NOTE: str(body.espaNote),
+            PRIMARY_URL: str(body.espaPrimaryUrl),
+            SECONDARY_URL: str(body.espaSecondaryUrl)
+          })
+          contents = filled.contents
+          altText = filled.altText
+        } catch (err) {
+          error = `โหลดเทมเพลต ESPA ไม่สำเร็จ: ${err instanceof Error ? err.message : String(err)}`
         }
       } else {
         contents = flexAnnouncement({
@@ -211,6 +238,7 @@ export function createAdminRouter(): Router {
         logs,
         preview: error ? null : { kind, text: body.text, altText, contents },
         form: body,
+        espaTemplates: listEspaTemplates(),
         flash: error ? { type: 'error', text: error } : res.locals.flash
       })
       return
